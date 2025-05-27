@@ -5,6 +5,8 @@ import (
 	"log"
 
 	"github.com/rivioletz/go-clean-ecommerce/config"
+	"github.com/rivioletz/go-clean-ecommerce/product/repository/postgres"
+	"github.com/rivioletz/go-clean-ecommerce/product/usecase"
 )
 
 func main() {
@@ -16,4 +18,7 @@ func main() {
 
 	// Print the loaded configuration
 	fmt.Println("✅ Connected to DB:", db)
+
+	repo := postgres.NewProductRepository(db)
+	uc := usecase.NewProductUsecase(repo)
 }
